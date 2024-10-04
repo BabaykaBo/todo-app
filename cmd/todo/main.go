@@ -7,14 +7,28 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/BabaykaBo/todo-app"
 )
 
 const (
-	todoFile = ".todos.json"
+	todoFile = "todos.json"
 )
+
+func getPath() string {
+	configDir, err := os.UserConfigDir()
+	if err != nil {
+		fmt.Println("Error getting config directory:", err)
+		return ""
+	}
+
+	todoDir := filepath.Join(configDir, "todo")
+	os.MkdirAll(todoDir, os.ModePerm)
+
+	return filepath.Join(todoDir, todoFile)
+}
 
 func main() {
 	add := flag.Bool("add", false, "add new todo")
@@ -26,7 +40,9 @@ func main() {
 
 	todos := &todo.Todos{}
 
-	if err := todos.Load(todoFile); err != nil {
+	file := getPath()
+
+	if err := todos.Load(file); err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
 	}
@@ -40,8 +56,8 @@ func main() {
 		}
 
 		todos.Add(task)
-		
-		err = todos.Store(todoFile)
+
+		err = todos.Store(file)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err.Error())
 			os.Exit(1)
@@ -53,7 +69,7 @@ func main() {
 			os.Exit(1)
 		}
 
-		err = todos.Store(todoFile)
+		err = todos.Store(file)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err.Error())
 			os.Exit(1)
@@ -65,7 +81,7 @@ func main() {
 			os.Exit(1)
 		}
 
-		err = todos.Store(todoFile)
+		err = todos.Store(file)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err.Error())
 			os.Exit(1)

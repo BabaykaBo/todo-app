@@ -3,10 +3,12 @@
 #
 # Binaries for programs and plugins
 *.exe
-*.exe~
-*.dll
+*.out
+*.bin
+*.o
 *.so
-*.dylib
+*.a
+*.dll
 
 # Test binary, built with `go test -c`
 *.test
@@ -29,3 +31,7 @@ go.work.sum
 
 #tools
 .vscode
+
+# executes
+/todo
+/mytodo
