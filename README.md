@@ -70,7 +70,7 @@ I will use default name `mytodo` for examples.
 ```commandline
 mytodo -add task for example
 ```
-*List todos:
+* List todos:
 ```commandline
 mytodo -list
 ```
@@ -78,7 +78,7 @@ mytodo -list
 ```commandline
 mytodo -complete=1
 ```
-*Delete todo.You need to set id:
+* Delete todo.You need to set id:
 ```commandline
 mytodo -del=1
 ```
