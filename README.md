@@ -59,9 +59,13 @@ OR
 ```commandline
 make uninstall BINARY_NAME=custom_todo INSTALL_DIR=/custom/path
 ```
-You can ommit `BINARY_NAME` or/and `INSTALL_DIR`
+You can ommit `BINARY_NAME` or/and `INSTALL_DIR` if you don`t need.
+
+Note: if you have set `BINARY_NAME` or/and `INSTALL_DIR` you have to write them in next commands you will use.
+So, if you have created file `make todo/build BINARY_NAME=other_todo`, and you want to install it globally
+You have to write `make todo/install BINARY_NAME=custom_todo`
 ### Features:
-Note: I will use default name `mytodo` for examples.
+I will use default name `mytodo` for examples.
 * Add todo:
 ```commandline
 mytodo -add task for example
