@@ -85,6 +85,6 @@ func (t *Todos) Store(filename string) error {
 
 func (t *Todos) Print() {
 	for i, item := range *t {
-		fmt.Printf("%d - %s/n", i, item.Task)
+		fmt.Printf("%d - %s\n", i, item.Task)
 	}
 }
